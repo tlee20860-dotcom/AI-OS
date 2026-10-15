@@ -1,26 +1,89 @@
-# 專案索引
+# 專案索引（AI 專用倉庫地圖）
 
 > ⚠️ 本檔由 GitHub Actions 自動生成。
 
-## 專案清單
+## 🚨 AI 啟動與讀取指示（最高優先）
 
-- 專案名稱：家庭 webapp
-  領域：W
-  核心 STARTUP：STARTUP-core-webapp.md
-  專案 STARTUP：STARTUP-project-family-fin.md
-
-- 專案名稱：訓練 AI
-  領域：W
-  核心 STARTUP：STARTUP-core-webapp.md
-  專案 STARTUP：STARTUP-project-ai-training.md
+請嚴格執行以下步驟，禁止跳過、禁止自行捏造不存在的檔案：
+1. **先自報編號**：格式 A{YYYYMMDD}-{序號3位}，並輸出一行 `- A{YYYYMMDD}-{序號3位}`。
+2. **等待確認**：停下來，等使用者回覆「已更新」或「繼續」。
+3. **列出專案**：使用者確認後，列出下方「專案清單」中的所有專案。
+4. **執行「分步讀取協議」**（見下方說明）。
 
 ---
 
-## 🔗 重要檔案路徑（AI 必讀）
+## 📋 專案清單
 
-以下是本訓練體系的核心檔案，**請直接從下方讀取，禁止自行憑空生成或假設其不存在**：
+- 專案名稱：家庭 webapp（領域：W）
+  核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
+  專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-family-fin.md
+- 專案名稱：訓練 AI（領域：W）
+  核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
+  專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-ai-training.md
 
-### R-01 名單（寫手名單與編號紀錄）
+---
+
+## 📖 分步讀取協議（AI 必做）
+
+當使用者選擇專案並提出需求時，你必須：
+1. 從下方「倉庫檔案地圖」與「程式碼地圖」中找出相關檔案。
+2. 規劃讀取清單，每次最多讀取 2 個檔案。
+3. 輸出清單並詢問：「是否同意開始讀取第 1 步？」
+4. 收到「確認」後才讀取，讀完摘要，再問是否繼續下一步。
+5. 全部讀完後才提供修改方案。
+
+⚠️ 禁止一次讀取超過 2 個檔案；禁止未讀完就給方案。
+
+---
+
+## 🗺️ 倉庫檔案地圖（AI-training-files）
+
+### 📂 核心大腦 (docs/common/)
+- docs/common/C-00-startup.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-00-startup.md
+- docs/common/C-01-profile.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-01-profile.md
+- docs/common/C-02-rules.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-02-rules.md
+- docs/common/C-03-guide.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-03-guide.md
+- docs/common/C-04-delivery.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-04-delivery.md
+- docs/common/C-05-learning.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-05-learning.md
+- docs/common/C-06-token-log.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-06-token-log.md
+- docs/common/C-07-summary.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-07-summary.md
+- docs/common/C-09-rolling-mechanism.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-09-rolling-mechanism.md
+- docs/common/C-10-handoff-mechanism.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-10-handoff-mechanism.md
+
+### 📂 Web App 技能包 (docs/skills/W/)
+- docs/skills/W/W-00-startup.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-00-startup.md
+- docs/skills/W/W-01-firebase.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-01-firebase.md
+- docs/skills/W/W-02-functions.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-02-functions.md
+- docs/skills/W/W-03-esmodule.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-03-esmodule.md
+- docs/skills/W/W-04-pwa.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-04-pwa.md
+- docs/skills/W/W-05-schema.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-05-schema.md
+
+### 📂 機械記錄 (docs/records/)
+- docs/records/R-01-writers.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/records/R-01-writers.md
+
+### 📂 家庭 webapp 專案 (docs/projects/family-fin/)
+- docs/projects/family-fin/P-01-index.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-01-index.md
+- docs/projects/family-fin/P-02-progress.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-02-progress.md
+- docs/projects/family-fin/P-03-manifest.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-03-manifest.md
+- docs/projects/family-fin/P-04-decisions.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-04-decisions.md
+- docs/projects/family-fin/P-05-sop.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-05-sop.md
+- docs/projects/family-fin/P-06-pagemap.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-06-pagemap.md
+- docs/projects/family-fin/P-07-uispec.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-07-uispec.md
+- docs/projects/family-fin/P-08-api.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-08-api.md
+- docs/projects/family-fin/P-09-data.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-09-data.md
+- docs/projects/family-fin/P-10-incident.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-10-incident.md
+- docs/projects/family-fin/P-12-conclusion.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-12-conclusion.md
+- docs/projects/family-fin/P-13-handoff.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-13-handoff.md
+- docs/projects/family-fin/P-14-decisions.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-14-decisions.md
+- docs/projects/family-fin/P-15-reorg-plan.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-15-reorg-plan.md
+- docs/projects/family-fin/P-99-errors-map.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-99-errors-map.md
+
+### 📂 訓練 AI 專案 (docs/projects/ai-training/)
+- docs/projects/ai-training/P-00-training.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/ai-training/P-00-training.md
+
+---
+## 📋 R-01 當前內容（AI 請直接讀取）
+
 # R-01 AI 編寫者名單 + 專案索引
 
 最後更新：B34-4
@@ -276,3 +339,123 @@ V: 1791903400
 B: B34-4
 W: A20261013-004#164
 ═══ */
+---
+## 🗺️ v2.Family 程式碼地圖
+# v2.Family 程式碼地圖
+
+> 本檔由 GitHub Actions 自動生成，列出 v2.Family 倉庫中所有程式碼檔案的路徑與 Raw URL。
+
+## Raw URL 拼接規則
+https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/
+
+## 檔案清單
+- admin.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/admin.html
+- annual-report.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/annual-report.html
+- code-list.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/code-list.html
+- css/components.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/components.css
+- css/layout.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/layout.css
+- css/pages/annual-report.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/pages/annual-report.css
+- css/pages/insurance.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/pages/insurance.css
+- css/theme.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/theme.css
+- css/utilities.css -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/css/utilities.css
+- finance-overview.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/finance-overview.html
+- functions/api/[[path]].js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/[[path]].js
+- functions/api/_admin.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_admin.js
+- functions/api/_bank.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_bank.js
+- functions/api/_config.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_config.js
+- functions/api/_entity.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_entity.js
+- functions/api/_family.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_family.js
+- functions/api/_helpers.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_helpers.js
+- functions/api/_insurance.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_insurance.js
+- functions/api/_personal.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_personal.js
+- functions/api/_platform.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_platform.js
+- functions/api/_summary.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/functions/api/_summary.js
+- index.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/index.html
+- input-center.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/input-center.html
+- insurance.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/insurance.html
+- js/admin/admin.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/admin/admin.js
+- js/admin/platform-defaults.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/admin/platform-defaults.js
+- js/blocks/detail-block.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/blocks/detail-block.js
+- js/blocks/filter-block.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/blocks/filter-block.js
+- js/blocks/form-block.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/blocks/form-block.js
+- js/blocks/list-block.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/blocks/list-block.js
+- js/blocks/stats-block.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/blocks/stats-block.js
+- js/config/app-config.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/app-config.js
+- js/config/column-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/column-registry.js
+- js/config/constants.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/constants.js
+- js/config/entity-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/entity-registry.js
+- js/config/firebase-config.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/firebase-config.js
+- js/config/label-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/label-registry.js
+- js/config/page-metadata-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/page-metadata-registry.js
+- js/config/status-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/config/status-registry.js
+- js/core/api.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/api.js
+- js/core/auth-guard.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/auth-guard.js
+- js/core/auth.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/auth.js
+- js/core/db.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/db.js
+- js/core/debug.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/debug.js
+- js/core/pwa.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/pwa.js
+- js/core/state.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/state.js
+- js/core/utils.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/core/utils.js
+- js/engines/data-engine.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/engines/data-engine.js
+- js/engines/page-engine.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/engines/page-engine.js
+- js/engines/render-engine.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/engines/render-engine.js
+- js/entity/entity-definitions.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/entity/entity-definitions.js
+- js/entity/entity-funds-allocation.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/entity/entity-funds-allocation.js
+- js/entity/entity-helpers.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/entity/entity-helpers.js
+- js/entity/entity-modal.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/entity/entity-modal.js
+- js/entity/entity-resolvers.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/entity/entity-resolvers.js
+- js/layout/app-shell.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/layout/app-shell.js
+- js/layout/navbar.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/layout/navbar.js
+- js/layout/sidebar.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/layout/sidebar.js
+- js/lib/async.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/async.js
+- js/lib/bank.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/bank.js
+- js/lib/code-registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/code-registry.js
+- js/lib/dom.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/dom.js
+- js/lib/expense-modal.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/expense-modal.js
+- js/lib/filter-sort.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/filter-sort.js
+- js/lib/format.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/format.js
+- js/lib/id-resolver.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/id-resolver.js
+- js/lib/income-modal.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/income-modal.js
+- js/lib/insurance.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/insurance.js
+- js/lib/lifecycle.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/lifecycle.js
+- js/lib/merge.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/merge.js
+- js/lib/page-controls.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/page-controls.js
+- js/lib/registry.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/lib/registry.js
+- js/pages/annual-report.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/annual-report.js
+- js/pages/code-list.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/code-list.js
+- js/pages/dashboard.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/dashboard.js
+- js/pages/finance-overview.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/finance-overview.js
+- js/pages/input-center.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/input-center.js
+- js/pages/insurance.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/insurance.js
+- js/pages/member-report.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/member-report.js
+- js/pages/portfolio.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/portfolio.js
+- js/pages/settings.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/settings.js
+- js/pages/settlements.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/pages/settlements.js
+- js/shared/bank-account-manager.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/bank-account-manager.js
+- js/shared/column-settings.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/column-settings.js
+- js/shared/data-card.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/data-card.js
+- js/shared/data-table.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/data-table.js
+- js/shared/date-helpers.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/date-helpers.js
+- js/shared/entity-list-page.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/entity-list-page.js
+- js/shared/form-handler.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/form-handler.js
+- js/shared/listener-group.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/listener-group.js
+- js/shared/page-filter.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/page-filter.js
+- js/shared/quick-summary.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/quick-summary.js
+- js/shared/select-helpers.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/select-helpers.js
+- js/shared/stats-cards.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/stats-cards.js
+- js/shared/yearrange-card.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/shared/yearrange-card.js
+- js/ui/collapsible.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/collapsible.js
+- js/ui/dropdown-plus.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/dropdown-plus.js
+- js/ui/form-builder.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/form-builder.js
+- js/ui/modal.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/modal.js
+- js/ui/tab-panel.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/tab-panel.js
+- js/ui/toast.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/toast.js
+- js/ui/view-toggle.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/js/ui/view-toggle.js
+- login.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/login.html
+- manifest.json -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/manifest.json
+- member-report.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/member-report.html
+- portfolio.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/portfolio.html
+- register.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/register.html
+- settings.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/settings.html
+- settlements.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/settlements.html
+- sw.js -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/sw.js

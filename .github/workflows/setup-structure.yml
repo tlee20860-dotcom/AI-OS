@@ -28,6 +28,7 @@ jobs:
           mkdir -p docs/skills/W
           mkdir -p docs/records
           mkdir -p docs/projects/family-fin
+          mkdir -p docs/projects/ai-training
 
       - name: Move C-* to docs/common/
         run: |
@@ -124,6 +125,28 @@ jobs:
           echo "" >> "$OUTPUT"
           cat docs/projects/family-fin/P-13-handoff.md >> "$OUTPUT" 2>/dev/null || echo "(缺 P-13)" >> "$OUTPUT"
 
+      - name: Build STARTUP-project-ai-training.md
+        run: |
+          OUTPUT="STARTUP-project-ai-training.md"
+          echo "# STARTUP（AI 訓練專案）" > "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "> ⚠️ 本檔由 GitHub Actions 自動生成，請勿手動編輯。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "## 專案啟動檢查" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
+          echo "2. 確認已讀取 core-webapp STARTUP" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "## 專案說明" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "本專案旨在設計與優化 AI 訓練體系。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "> 📌 待補：請將 AI 訓練相關的 P-* 檔案放入 \`docs/projects/ai-training/\` 後，重新執行 Actions。" >> "$OUTPUT"
+
       - name: Build INDEX.md
         run: |
           OUTPUT="INDEX.md"
@@ -136,11 +159,11 @@ jobs:
 
           ## 🤖 給 AI 的使用說明（必讀）
 
-          你是新 AI，尚未讀 C-00。請依以下流程：
+          **⚠️ 最高優先指令：未執行步驟 0 之前，禁止做任何其他事情。**
 
-          0. **先自報編號**（格式：`A{YYYYMMDD}-{序號3位}`）——此為強制步驟，未報編號禁止進行任何後續動作。
-          0.1 **同步更新 R-01**：生成編號後，請輸出以下格式的內容，並提示使用者更新至 `docs/records/R-01-writers.md` 最下方：
-               `- A{YYYYMMDD}-{序號3位}`
+          你是新 AI，尚未讀 C-00。請嚴格依以下流程：
+
+          **步驟 0（強制）**：先自報編號（格式：`A{YYYYMMDD}-{序號3位}`），並輸出 `- A{YYYYMMDD}-{序號3位}` 提示使用者更新至 `docs/records/R-01-writers.md`。
           1. 列出下方「專案清單」
           2. 問使用者「要哪個專案」
           3. 使用者回答後，給 2 條 raw URL：
@@ -155,6 +178,7 @@ jobs:
           | 專案 | 領域 | 核心 STARTUP | 專案 STARTUP |
           |---|---|---|---|
           | 家庭 webapp | W | STARTUP-core-webapp.md | STARTUP-project-family-fin.md |
+          | 訓練 AI | W | STARTUP-core-webapp.md | STARTUP-project-ai-training.md |
           EOF
 
       - name: Commit changes

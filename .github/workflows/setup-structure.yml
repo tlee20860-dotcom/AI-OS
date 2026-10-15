@@ -2,11 +2,6 @@
 # setup-structure.yml — 一次性目錄重組 + 產 STARTUP
 # 位置：.github/workflows/setup-structure.yml
 # ============================================
-# 功能：
-#   1. 首次執行：把根目錄的 C-*/W-*/P-*/R-01 搬到子資料夾
-#   2. 產出 STARTUP-core-webapp.md + STARTUP-project-family-fin.md + INDEX.md
-#   3. 之後每次 push 自動更新 STARTUP
-# ============================================
 
 name: Setup Structure + Build STARTUP
 
@@ -27,7 +22,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 步驟 1：建目錄
       - name: Create directory structure
         run: |
           mkdir -p docs/common
@@ -35,7 +29,6 @@ jobs:
           mkdir -p docs/records
           mkdir -p docs/projects/family-fin
 
-      # 步驟 2：搬檔
       - name: Move C-* to docs/common/
         run: |
           for f in C-*.md; do
@@ -68,7 +61,6 @@ jobs:
             fi
           done
 
-      # 步驟 3：產 STARTUP-core-webapp.md
       - name: Build STARTUP-core-webapp.md
         run: |
           OUTPUT="STARTUP-core-webapp.md"
@@ -103,7 +95,6 @@ jobs:
             fi
           done
 
-      # 步驟 4：產 STARTUP-project-family-fin.md
       - name: Build STARTUP-project-family-fin.md
         run: |
           OUTPUT="STARTUP-project-family-fin.md"
@@ -123,28 +114,36 @@ jobs:
           echo "" >> "$OUTPUT"
           cat docs/projects/family-fin/P-13-handoff.md >> "$OUTPUT" 2>/dev/null || echo "(缺 P-13)" >> "$OUTPUT"
 
-      # 步驟 5：產 INDEX.md
       - name: Build INDEX.md
         run: |
           OUTPUT="INDEX.md"
-          echo "# 專案索引" > "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "> ⚠️ 本檔由 GitHub Actions 自動生成。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## 使用方式" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "1. 貼本檔 URL 給 AI" >> "$OUTPUT"
-          echo "2. AI 列出所有專案" >> "$OUTPUT"
-          echo "3. 你說要哪個專案" >> "$OUTPUT"
-          echo "4. AI 給你 2 條 STARTUP URL" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## 專案清單" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "| 專案 | 領域 | 核心 STARTUP | 專案 STARTUP |" >> "$OUTPUT"
-          echo "|---|---|---|---|" >> "$OUTPUT"
-          echo "| 家庭 webapp | W | STARTUP-core-webapp.md | STARTUP-project-family-fin.md |" >> "$OUTPUT"
+          cat > "$OUTPUT" <<'EOF'
+          # 專案索引
 
-      # 步驟 6：Commit & Push
+          > ⚠️ 本檔由 GitHub Actions 自動生成。
+
+          ---
+
+          ## 🤖 給 AI 的使用說明（必讀）
+
+          你是新 AI，尚未讀 C-00。請依以下流程：
+
+          1. 列出下方「專案清單」
+          2. 問使用者「要哪個專案」
+          3. 使用者回答後，給 2 條 raw URL：
+             - 核心：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/{核心 STARTUP}
+             - 專案：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/{專案 STARTUP}
+          4. 等使用者貼上 2 條 URL 後，讀取並依 C-00 §十執行
+
+          ---
+
+          ## 專案清單
+
+          | 專案 | 領域 | 核心 STARTUP | 專案 STARTUP |
+          |---|---|---|---|
+          | 家庭 webapp | W | STARTUP-core-webapp.md | STARTUP-project-family-fin.md |
+          EOF
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"

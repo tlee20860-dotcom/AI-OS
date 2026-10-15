@@ -1,5 +1,5 @@
 # ============================================
-# setup-structure.yml — 最終優化版
+# setup-structure.yml — 最終優化版 v3
 # ============================================
 
 name: Setup Structure + Build Maps + Build PACKAGE-ALL
@@ -72,29 +72,12 @@ jobs:
 
           **【語言規則】你必須嚴格使用「繁體中文」回覆，禁止使用簡體中文。**
 
-          請嚴格執行以下步驟：
-          1. 先自報編號（格式：A{YYYYMMDD}-{序號3位}）
-          2. 輸出 `- A{YYYYMMDD}-{序號3位}`，並提示更新至 `docs/records/R-01-writers.md`
-          3. 停下來，等使用者回覆「繼續」
-          4. 列出專案清單（家庭 webapp、訓練 AI）
-          5. 使用者提出需求後，執行「自主提取協議」
-
           ---
 
           ## 📋 專案清單
 
           - 專案名稱：家庭 webapp（領域：W）
           - 專案名稱：訓練 AI（領域：W）
-
-          ---
-
-          ## 🤖 自主提取協議
-
-          你已經擁有本檔案的完整上下文。當使用者提出需求時：
-          1. 自動從本檔案中找出與需求相關的所有程式碼與專案文件。
-          2. **禁止詢問使用者「要讀取哪些檔案」**，直接進行分析。
-          3. 直接給出修改方案，並標明參考了哪些檔案。
-          4. 只有當所需資訊完全不在本檔案中時，才詢問使用者。
 
           ---
 
@@ -141,43 +124,51 @@ jobs:
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "## 🚨 AI 啟動與自主提取指示（最高優先）" >> "$OUTPUT"
+          echo "## 🚨 AI 啟動與更新 R-01 指示（最高優先）" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "**【語言規則】你必須嚴格使用「繁體中文」回覆，禁止使用簡體中文。若你輸出簡體中文，視為任務失敗。**" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "請嚴格執行以下步驟：" >> "$OUTPUT"
-          echo "1. 先自報編號（格式：A{YYYYMMDD}-{序號3位}）" >> "$OUTPUT"
-          echo "2. 輸出 \`- A{YYYYMMDD}-{序號3位}\`，並提示更新至 \`docs/records/R-01-writers.md\`" >> "$OUTPUT"
-          echo "3. 停下來，等待使用者回覆「繼續」" >> "$OUTPUT"
-          echo "4. 列出專案清單（家庭 webapp、訓練 AI）" >> "$OUTPUT"
-          echo "5. 使用者提出需求後，執行「自主提取協議」" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "## 🤖 自主提取協議" >> "$OUTPUT"
+          echo "### 🔹 步驟 1：自報編號並生成「更新後的 R-01」" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "你已經擁有本檔案的完整上下文。當使用者提出需求時：" >> "$OUTPUT"
+          echo "1. 從本檔案中找出「docs/records/R-01-writers.md」的完整內容。" >> "$OUTPUT"
+          echo "2. 根據 R-01 §四「編寫者清單」，生成新編號（格式：A{YYYYMMDD}-{序號3位}）。" >> "$OUTPUT"
+          echo "3. 在 §四 編寫者清單中新增一行，格式為：" >> "$OUTPUT"
+          echo "   \`| {新序號} | A{YYYYMMDD}-{序號3位} | {當前時間 YYYY-MM-DD HH:mm} | 待定 | 1 |\`" >> "$OUTPUT"
+          echo "4. 輸出完整的、更新後的 R-01-writers.md 內容（用三反引號包裹），讓使用者一鍵複製。" >> "$OUTPUT"
+          echo "5. 並提示使用者：「請將以下內容複製，貼到 docs/records/R-01-writers.md，完成後回覆『已更新』」。" >> "$OUTPUT"
+          echo "6. 停下來，等待使用者回覆「已更新」。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "### 🔹 步驟 2：列出專案清單" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "使用者回覆「已更新」後，列出專案清單：" >> "$OUTPUT"
+          echo "1. 家庭 webapp" >> "$OUTPUT"
+          echo "2. 訓練 AI" >> "$OUTPUT"
+          echo "並詢問使用者要選擇哪個專案。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "### 🔹 步驟 3：自主提取與開發" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "使用者選擇專案並提出需求後，執行「自主提取協議」：" >> "$OUTPUT"
           echo "1. 自動從本檔案中找出與需求相關的所有程式碼與專案文件。" >> "$OUTPUT"
-          echo "2. **禁止詢問使用者「要讀取哪些檔案」**，直接進行分析。" >> "$OUTPUT"
-          echo "3. 直接給出修改方案，並標明參考了哪些檔案（例如：根據 js/core/api.js 與 P-08-api.md）。" >> "$OUTPUT"
+          echo "2. 禁止詢問「要讀取哪些檔案」，直接進行分析。" >> "$OUTPUT"
+          echo "3. 直接給出修改方案，並標明參考了哪些檔案。" >> "$OUTPUT"
           echo "4. 只有當所需資訊完全不在本檔案中時，才詢問使用者。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "## ⛔ 禁止事項（違反視為任務失敗）" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "1. 禁止使用簡體中文回覆。" >> "$OUTPUT"
           echo "2. 禁止要求使用者提供 STARTUP URL（本檔案已包含全部內容）。" >> "$OUTPUT"
           echo "3. 禁止詢問「要讀取哪兩個檔案」，請自行從本檔案中提取。" >> "$OUTPUT"
-          echo "4. 禁止一次輸出超過 2000 字的方案，請分段並等待使用者確認。" >> "$OUTPUT"
+          echo "4. 禁止在步驟 1 未完成前，跳到步驟 2 或 3。" >> "$OUTPUT"
+          echo "5. 禁止一次輸出超過 2000 字的方案，請分段並等待使用者確認。" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "## 📋 回覆格式（每次必須遵守）" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "每次回覆請遵守以下格式：" >> "$OUTPUT"
-          echo "1. 開頭標示：\`🆔 A{YYYYMMDD}-{序號} #{回覆序號}\`" >> "$OUTPUT"
-          echo "2. 中間為內容（分析、方案、問題）" >> "$OUTPUT"
-          echo "3. 結尾標示：\`Token: 🟢 剩餘: {百分比}%\`" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
 
           # 第 1 部分：核心訓練規則
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
           echo "# 📚 第 1 部分：核心訓練規則" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           for f in \

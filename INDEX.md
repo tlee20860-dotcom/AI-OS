@@ -13,3 +13,12 @@
   領域：W
   核心 STARTUP：STARTUP-core-webapp.md
   專案 STARTUP：STARTUP-project-ai-training.md
+
+---
+
+## 🔗 重要檔案路徑（AI 必讀）
+
+以下是本訓練體系的核心檔案，請直接點擊或讀取，**禁止自行憑空生成或假設其不存在**：
+
+- **R-01 名單**（寫手名單與編號紀錄）：
+  https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/records/R-01-writers.md

@@ -1,26 +1,31 @@
 # ============================================
-# setup-structure.yml — 一次性目錄重組 + 產 STARTUP
+# setup-structure.yml — 手動觸發 + 跨倉庫掃描 + 生成雙地圖
 # 位置：.github/workflows/setup-structure.yml
 # ============================================
 
-name: Setup Structure + Build STARTUP
+name: Setup Structure + Build Maps
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main, master]
+  workflow_dispatch:  # 只允許手動觸發
 
 jobs:
-  setup-and-build:
+  build-maps:
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout AI-training-files
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout v2.Family (跨倉庫)
+        uses: actions/checkout@v4
+        with:
+          repository: tlee20860-dotcom/v2.Family
+          token: ${{ secrets.CROSS_REPO_PAT }}
+          path: external/v2.Family
 
       - name: Create directory structure
         run: |
@@ -30,171 +35,117 @@ jobs:
           mkdir -p docs/projects/family-fin
           mkdir -p docs/projects/ai-training
 
-      - name: Move C-* to docs/common/
+      - name: Move files (若尚未移動)
         run: |
-          for f in C-*.md; do
-            if [ -f "$f" ]; then
-              git mv "$f" docs/common/ || mv "$f" docs/common/
-            fi
+          for f in C-*.md; do [ -f "$f" ] && git mv "$f" docs/common/ 2>/dev/null || true; done
+          for f in W-*.md; do [ -f "$f" ] && git mv "$f" docs/skills/W/ 2>/dev/null || true; done
+          for f in R-*.md; do [ -f "$f" ] && git mv "$f" docs/records/ 2>/dev/null || true; done
+          for f in P-*.md; do [ -f "$f" ] && git mv "$f" docs/projects/family-fin/ 2>/dev/null || true; done
+
+      - name: Build CODE-MAP-v2.Family.md
+        run: |
+          OUTPUT="CODE-MAP-v2.Family.md"
+          echo "# v2.Family 程式碼地圖" > "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "> 本檔由 GitHub Actions 自動生成，列出 v2.Family 倉庫中所有程式碼檔案的路徑與 Raw URL。" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "## Raw URL 拼接規則" >> "$OUTPUT"
+          echo 'https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/' >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "## 檔案清單" >> "$OUTPUT"
+          cd external/v2.Family
+          find . -type f \( -name "*.js" -o -name "*.html" -o -name "*.css" -o -name "*.json" \) | sort | while read -r file; do
+            clean_path="${file#./}"
+            echo "- $clean_path -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/$clean_path" >> "../../$OUTPUT"
           done
+          cd ../..
 
-      - name: Move W-* to docs/skills/W/
-        run: |
-          for f in W-*.md; do
-            if [ -f "$f" ]; then
-              git mv "$f" docs/skills/W/ || mv "$f" docs/skills/W/
-            fi
-          done
-
-      - name: Move R-* to docs/records/
-        run: |
-          for f in R-*.md; do
-            if [ -f "$f" ]; then
-              git mv "$f" docs/records/ || mv "$f" docs/records/
-            fi
-          done
-
-      - name: Move P-* to docs/projects/family-fin/
-        run: |
-          for f in P-*.md; do
-            if [ -f "$f" ]; then
-              git mv "$f" docs/projects/family-fin/ || mv "$f" docs/projects/family-fin/
-            fi
-          done
-
-      # ─────────────────────────────────────────────
-      # 1. 生成 STARTUP-core-webapp.md（頂部加入啟動檢查 + 防幻覺警告）
-      # ─────────────────────────────────────────────
-      - name: Build STARTUP-core-webapp.md
-        run: |
-          OUTPUT="STARTUP-core-webapp.md"
-          echo "# STARTUP（Web App 領域）" > "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "> ⚠️ 本檔由 GitHub Actions 自動生成，請勿手動編輯。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## 🚨 啟動檢查（AI 必做）" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "在進行任何動作前，請先執行以下檢查：" >> "$OUTPUT"
-          echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
-          echo "2. **輸出 R-01 紀錄格式**：請輸出 \`- A{YYYYMMDD}-{序號3位}\`，並提示使用者更新至 \`docs/records/R-01-writers.md\`" >> "$OUTPUT"
-          echo "3. **等待確認**：停下來，等待使用者回覆「已更新」或「繼續」" >> "$OUTPUT"
-          echo "4. **禁止自行編造**：若下方未出現 R-01 或 P-* 內容，請**絕對禁止**自行生成或假設其不存在。必須回頭從 \`INDEX.md\` 中提供的連結讀取。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## Part 1：C-00 啟動卡" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          cat docs/common/C-00-startup.md >> "$OUTPUT" 2>/dev/null || cat C-00-startup.md >> "$OUTPUT" 2>/dev/null || echo "(缺 C-00，請確認路徑)" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## Part 2：R-01 名單" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          # 多重路徑回退，確保抓到 R-01
-          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat docs/records/R-01.md >> "$OUTPUT" 2>/dev/null || echo "(缺 R-01，請參考 INDEX.md 連結)" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## Part 3：Web App 技能包" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          for f in docs/skills/W/W-*.md; do
-            if [ -f "$f" ]; then
-              echo "### $f" >> "$OUTPUT"
-              echo "" >> "$OUTPUT"
-              cat "$f" >> "$OUTPUT"
-              echo "" >> "$OUTPUT"
-              echo "---" >> "$OUTPUT"
-              echo "" >> "$OUTPUT"
-            fi
-          done
-
-      # ─────────────────────────────────────────────
-      # 2. 生成 STARTUP-project-family-fin.md
-      # ─────────────────────────────────────────────
-      - name: Build STARTUP-project-family-fin.md
-        run: |
-          OUTPUT="STARTUP-project-family-fin.md"
-          echo "# STARTUP（家庭 webapp 專案）" > "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "> ⚠️ 本檔由 GitHub Actions 自動生成，請勿手動編輯。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## Part 1：P-12 議題結論" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          cat docs/projects/family-fin/P-12-conclusion.md >> "$OUTPUT" 2>/dev/null || echo "(缺 P-12)" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## Part 2：P-13 交接快照" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          cat docs/projects/family-fin/P-13-handoff.md >> "$OUTPUT" 2>/dev/null || echo "(缺 P-13)" >> "$OUTPUT"
-
-      # ─────────────────────────────────────────────
-      # 3. 生成 STARTUP-project-ai-training.md
-      # ─────────────────────────────────────────────
-      - name: Build STARTUP-project-ai-training.md
-        run: |
-          OUTPUT="STARTUP-project-ai-training.md"
-          echo "# STARTUP（AI 訓練專案）" > "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "> ⚠️ 本檔由 GitHub Actions 自動生成，請勿手動編輯。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## 🚨 啟動檢查（AI 必做）" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
-          echo "2. 確認已讀取 core-webapp STARTUP" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "---" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "## 專案說明" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "本專案旨在設計與優化 AI 訓練體系。" >> "$OUTPUT"
-          echo "" >> "$OUTPUT"
-          echo "> 📌 待補：請將 AI 訓練相關的 P-* 檔案放入 \`docs/projects/ai-training/\` 後，重新執行 Actions。" >> "$OUTPUT"
-
-      # ─────────────────────────────────────────────
-      # 4. 生成 INDEX.md（純資料檔 + 直接注入 R-01 內容）
-      # ─────────────────────────────────────────────
       - name: Build INDEX.md
         run: |
           OUTPUT="INDEX.md"
           cat > "$OUTPUT" <<'EOF'
-          # 專案索引
+          # 專案索引（AI 專用倉庫地圖）
 
           > ⚠️ 本檔由 GitHub Actions 自動生成。
 
-          ## 專案清單
+          ## 🚨 AI 啟動與讀取指示（最高優先）
 
-          - 專案名稱：家庭 webapp
-            領域：W
-            核心 STARTUP：STARTUP-core-webapp.md
-            專案 STARTUP：STARTUP-project-family-fin.md
-
-          - 專案名稱：訓練 AI
-            領域：W
-            核心 STARTUP：STARTUP-core-webapp.md
-            專案 STARTUP：STARTUP-project-ai-training.md
+          請嚴格執行以下步驟，禁止跳過、禁止自行捏造不存在的檔案：
+          1. **先自報編號**：格式 A{YYYYMMDD}-{序號3位}，並輸出一行 `- A{YYYYMMDD}-{序號3位}`。
+          2. **等待確認**：停下來，等使用者回覆「已更新」或「繼續」。
+          3. **列出專案**：使用者確認後，列出下方「專案清單」中的所有專案。
+          4. **執行「分步讀取協議」**（見下方說明）。
 
           ---
 
-          ## 🔗 重要檔案路徑（AI 必讀）
+          ## 📋 專案清單
 
-          以下是本訓練體系的核心檔案，**請直接從下方讀取，禁止自行憑空生成或假設其不存在**：
+          - 專案名稱：家庭 webapp（領域：W）
+            核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
+            專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-family-fin.md
+          - 專案名稱：訓練 AI（領域：W）
+            核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
+            專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-ai-training.md
 
-          ### R-01 名單（寫手名單與編號紀錄）
+          ---
+
+          ## 📖 分步讀取協議（AI 必做）
+
+          當使用者選擇專案並提出需求時，你必須：
+          1. 從下方「倉庫檔案地圖」與「程式碼地圖」中找出相關檔案。
+          2. 規劃讀取清單，每次最多讀取 2 個檔案。
+          3. 輸出清單並詢問：「是否同意開始讀取第 1 步？」
+          4. 收到「確認」後才讀取，讀完摘要，再問是否繼續下一步。
+          5. 全部讀完後才提供修改方案。
+
+          ⚠️ 禁止一次讀取超過 2 個檔案；禁止未讀完就給方案。
+
+          ---
+
+          ## 🗺️ 倉庫檔案地圖（AI-training-files）
+
+          ### 📂 核心大腦 (docs/common/)
           EOF
 
-          # 直接將 R-01 內容注入 INDEX.md，讓 AI 不需外求
-          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat docs/records/R-01.md >> "$OUTPUT" 2>/dev/null || echo "（目前無 R-01 內容，請確認檔案路徑）" >> "$OUTPUT"
+          for f in docs/common/*.md; do
+            [ -f "$f" ] && echo "- $f -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/$f" >> "$OUTPUT"
+          done
 
-      # ─────────────────────────────────────────────
-      # 5. 提交變更
-      # ─────────────────────────────────────────────
+          echo "" >> "$OUTPUT"
+          echo "### 📂 Web App 技能包 (docs/skills/W/)" >> "$OUTPUT"
+          for f in docs/skills/W/*.md; do
+            [ -f "$f" ] && echo "- $f -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/$f" >> "$OUTPUT"
+          done
+
+          echo "" >> "$OUTPUT"
+          echo "### 📂 機械記錄 (docs/records/)" >> "$OUTPUT"
+          for f in docs/records/*.md; do
+            [ -f "$f" ] && echo "- $f -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/$f" >> "$OUTPUT"
+          done
+
+          echo "" >> "$OUTPUT"
+          echo "### 📂 家庭 webapp 專案 (docs/projects/family-fin/)" >> "$OUTPUT"
+          for f in docs/projects/family-fin/*.md; do
+            [ -f "$f" ] && echo "- $f -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/$f" >> "$OUTPUT"
+          done
+
+          echo "" >> "$OUTPUT"
+          echo "### 📂 訓練 AI 專案 (docs/projects/ai-training/)" >> "$OUTPUT"
+          for f in docs/projects/ai-training/*.md; do
+            [ -f "$f" ] && echo "- $f -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/$f" >> "$OUTPUT"
+          done
+
+          echo "" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
+          echo "## 📋 R-01 當前內容（AI 請直接讀取）" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || echo "（R-01 讀取失敗）" >> "$OUTPUT"
+
+          echo "" >> "$OUTPUT"
+          echo "---" >> "$OUTPUT"
+          echo "## 🗺️ v2.Family 程式碼地圖" >> "$OUTPUT"
+          cat CODE-MAP-v2.Family.md >> "$OUTPUT" 2>/dev/null || echo "（CODE-MAP 讀取失敗）" >> "$OUTPUT"
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
@@ -204,5 +155,5 @@ jobs:
             echo "無變化，跳過"
             exit 0
           fi
-          git commit -m "chore: auto-setup structure + build STARTUP [skip ci]"
+          git commit -m "chore: auto-build maps [skip ci]"
           git push

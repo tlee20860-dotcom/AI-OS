@@ -74,8 +74,9 @@ jobs:
           echo "" >> "$OUTPUT"
           echo "在進行任何動作前，請先執行以下檢查：" >> "$OUTPUT"
           echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
-          echo "2. 回報「已讀取 startup」" >> "$OUTPUT"
-          echo "3. 確認已讀取 \`R-01-writers.md\`" >> "$OUTPUT"
+          echo "2. **輸出 R-01 紀錄格式**：請輸出 \`- A{YYYYMMDD}-{序號3位}\`，並提示使用者更新至 \`docs/records/R-01-writers.md\`" >> "$OUTPUT"
+          echo "3. 回報「已讀取 startup」" >> "$OUTPUT"
+          echo "4. 確認已讀取 \`R-01-writers.md\`" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
@@ -138,6 +139,8 @@ jobs:
           你是新 AI，尚未讀 C-00。請依以下流程：
 
           0. **先自報編號**（格式：`A{YYYYMMDD}-{序號3位}`）——此為強制步驟，未報編號禁止進行任何後續動作。
+          0.1 **同步更新 R-01**：生成編號後，請輸出以下格式的內容，並提示使用者更新至 `docs/records/R-01-writers.md` 最下方：
+               `- A{YYYYMMDD}-{序號3位}`
           1. 列出下方「專案清單」
           2. 問使用者「要哪個專案」
           3. 使用者回答後，給 2 條 raw URL：

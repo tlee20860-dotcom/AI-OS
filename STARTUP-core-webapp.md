@@ -8,8 +8,9 @@
 
 在進行任何動作前，請先執行以下檢查：
 1. **自報編號**（格式：`A{YYYYMMDD}-{序號3位}`）
-2. 回報「已讀取 startup」
-3. 確認已讀取 `R-01-writers.md`
+2. **輸出 R-01 紀錄格式**：請輸出 `- A{YYYYMMDD}-{序號3位}`，並提示使用者更新至 `docs/records/R-01-writers.md`
+3. 回報「已讀取 startup」
+4. 確認已讀取 `R-01-writers.md`
 
 ---
 

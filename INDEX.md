@@ -2,12 +2,20 @@
 
 > ⚠️ 本檔由 GitHub Actions 自動生成。
 
-## 使用方式
+---
 
-1. 貼本檔 URL 給 AI
-2. AI 列出所有專案
-3. 你說要哪個專案
-4. AI 給你 2 條 STARTUP URL
+## 🤖 給 AI 的使用說明（必讀）
+
+你是新 AI，尚未讀 C-00。請依以下流程：
+
+1. 列出下方「專案清單」
+2. 問使用者「要哪個專案」
+3. 使用者回答後，給 2 條 raw URL：
+   - 核心：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/{核心 STARTUP}
+   - 專案：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/{專案 STARTUP}
+4. 等使用者貼上 2 條 URL 後，讀取並依 C-00 §十執行
+
+---
 
 ## 專案清單
 

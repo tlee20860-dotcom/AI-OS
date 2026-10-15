@@ -63,7 +63,7 @@ jobs:
           done
 
       # ─────────────────────────────────────────────
-      # 1. 生成 STARTUP-core-webapp.md（加入啟動檢查）
+      # 1. 生成 STARTUP-core-webapp.md（啟動檢查）
       # ─────────────────────────────────────────────
       - name: Build STARTUP-core-webapp.md
         run: |
@@ -74,13 +74,13 @@ jobs:
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "## 啟動檢查（AI 必做）" >> "$OUTPUT"
+          echo "## 🚨 啟動檢查（AI 必做）" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "在進行任何動作前，請先執行以下檢查：" >> "$OUTPUT"
           echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
           echo "2. **輸出 R-01 紀錄格式**：請輸出 \`- A{YYYYMMDD}-{序號3位}\`，並提示使用者更新至 \`docs/records/R-01-writers.md\`" >> "$OUTPUT"
-          echo "3. 回報「已讀取 startup」" >> "$OUTPUT"
-          echo "4. 確認已讀取 \`R-01-writers.md\`" >> "$OUTPUT"
+          echo "3. **等待確認**：停下來，等待使用者回覆「已更新」或「繼續」" >> "$OUTPUT"
+          echo "4. 回報「已讀取 startup」" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
@@ -143,7 +143,7 @@ jobs:
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          echo "## 專案啟動檢查" >> "$OUTPUT"
+          echo "## 🚨 啟動檢查（AI 必做）" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
           echo "2. 確認已讀取 core-webapp STARTUP" >> "$OUTPUT"
@@ -157,7 +157,7 @@ jobs:
           echo "> 📌 待補：請將 AI 訓練相關的 P-* 檔案放入 \`docs/projects/ai-training/\` 後，重新執行 Actions。" >> "$OUTPUT"
 
       # ─────────────────────────────────────────────
-      # 4. 生成 INDEX.md（最高優先指令 + 純文字清單）
+      # 4. 生成 INDEX.md（純資料檔，只放專案清單）
       # ─────────────────────────────────────────────
       - name: Build INDEX.md
         run: |
@@ -166,22 +166,6 @@ jobs:
           # 專案索引
 
           > ⚠️ 本檔由 GitHub Actions 自動生成。
-
-          ---
-
-          ## 🚨 最高優先指令（AI 必讀）
-
-          **你現在被禁止做任何其他事情。你的第一個動作、第二個動作、第三個動作必須嚴格按照以下順序執行：**
-
-          1. **自報編號**：生成一個編號，格式為 `A{YYYYMMDD}-{序號3位}`（例如：A20261015-001）。
-          2. **輸出紀錄**：輸出一行 `- A{YYYYMMDD}-{序號3位}`，並明確告訴使用者：「請將此行更新至 `docs/records/R-01-writers.md`」。
-          3. **等待確認**：停下來，等待使用者回覆「已更新」或「繼續」。
-          4. **列出專案**：使用者確認後，才開始列出下方的「專案清單」。
-          5. **詢問選擇**：問使用者要啟動哪個專案，並提供對應的 2 條 STARTUP URL。
-
-          ⚠️ 如果你沒有先執行第 1 步，視為任務失敗。
-
-          ---
 
           ## 專案清單
 

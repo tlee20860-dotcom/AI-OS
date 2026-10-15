@@ -63,7 +63,7 @@ jobs:
           done
 
       # ─────────────────────────────────────────────
-      # 1. 生成 STARTUP-core-webapp.md（頂部加入啟動檢查）
+      # 1. 生成 STARTUP-core-webapp.md（頂部加入啟動檢查 + 防幻覺警告）
       # ─────────────────────────────────────────────
       - name: Build STARTUP-core-webapp.md
         run: |
@@ -80,19 +80,20 @@ jobs:
           echo "1. **自報編號**（格式：\`A{YYYYMMDD}-{序號3位}\`）" >> "$OUTPUT"
           echo "2. **輸出 R-01 紀錄格式**：請輸出 \`- A{YYYYMMDD}-{序號3位}\`，並提示使用者更新至 \`docs/records/R-01-writers.md\`" >> "$OUTPUT"
           echo "3. **等待確認**：停下來，等待使用者回覆「已更新」或「繼續」" >> "$OUTPUT"
-          echo "4. 回報「已讀取 startup」" >> "$OUTPUT"
+          echo "4. **禁止自行編造**：若下方未出現 R-01 或 P-* 內容，請**絕對禁止**自行生成或假設其不存在。必須回頭從 \`INDEX.md\` 中提供的連結讀取。" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "## Part 1：C-00 啟動卡" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          cat docs/common/C-00-startup.md >> "$OUTPUT" 2>/dev/null || echo "(缺 C-00)" >> "$OUTPUT"
+          cat docs/common/C-00-startup.md >> "$OUTPUT" 2>/dev/null || cat C-00-startup.md >> "$OUTPUT" 2>/dev/null || echo "(缺 C-00，請確認路徑)" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "## Part 2：R-01 名單" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
-          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || echo "(缺 R-01)" >> "$OUTPUT"
+          # 多重路徑回退，確保抓到 R-01
+          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat docs/records/R-01.md >> "$OUTPUT" 2>/dev/null || echo "(缺 R-01，請參考 INDEX.md 連結)" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
           echo "---" >> "$OUTPUT"
           echo "" >> "$OUTPUT"
@@ -157,7 +158,7 @@ jobs:
           echo "> 📌 待補：請將 AI 訓練相關的 P-* 檔案放入 \`docs/projects/ai-training/\` 後，重新執行 Actions。" >> "$OUTPUT"
 
       # ─────────────────────────────────────────────
-      # 4. 生成 INDEX.md（純資料檔 + 明確 R-01 連結）
+      # 4. 生成 INDEX.md（純資料檔 + 直接注入 R-01 內容）
       # ─────────────────────────────────────────────
       - name: Build INDEX.md
         run: |
@@ -183,11 +184,13 @@ jobs:
 
           ## 🔗 重要檔案路徑（AI 必讀）
 
-          以下是本訓練體系的核心檔案，請直接點擊或讀取，**禁止自行憑空生成或假設其不存在**：
+          以下是本訓練體系的核心檔案，**請直接從下方讀取，禁止自行憑空生成或假設其不存在**：
 
-          - **R-01 名單**（寫手名單與編號紀錄）：
-            https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/records/R-01-writers.md
+          ### R-01 名單（寫手名單與編號紀錄）
           EOF
+
+          # 直接將 R-01 內容注入 INDEX.md，讓 AI 不需外求
+          cat docs/records/R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat R-01-writers.md >> "$OUTPUT" 2>/dev/null || cat docs/records/R-01.md >> "$OUTPUT" 2>/dev/null || echo "（目前無 R-01 內容，請確認檔案路徑）" >> "$OUTPUT"
 
       # ─────────────────────────────────────────────
       # 5. 提交變更

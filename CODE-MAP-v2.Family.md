@@ -1,9 +1,6 @@
 # v2.Family 程式碼地圖
 
-> 本檔由 GitHub Actions 自動生成，列出 v2.Family 倉庫中所有程式碼檔案的路徑與 Raw URL。
-
-## Raw URL 拼接規則
-https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/
+> 本檔由 GitHub Actions 自動生成。
 
 ## 檔案清單
 - admin.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/admin.html

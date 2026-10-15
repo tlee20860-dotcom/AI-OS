@@ -4,41 +4,32 @@
 
 ## 🚨 AI 啟動與讀取指示（最高優先）
 
-請嚴格執行以下步驟，禁止跳過、禁止自行捏造不存在的檔案：
-1. **先自報編號**：格式 A{YYYYMMDD}-{序號3位}，並輸出一行 `- A{YYYYMMDD}-{序號3位}`。
-2. **等待確認**：停下來，等使用者回覆「已更新」或「繼續」。
-3. **列出專案**：使用者確認後，列出下方「專案清單」中的所有專案。
-4. **執行「分步讀取協議」**（見下方說明）。
+請嚴格執行以下步驟：
+1. 先自報編號（格式：A{YYYYMMDD}-{序號3位}）
+2. 輸出 `- A{YYYYMMDD}-{序號3位}`，並提示更新至 `docs/records/R-01-writers.md`
+3. 停下來，等使用者回覆「繼續」
+4. 列出專案清單（家庭 webapp、訓練 AI）
+5. 使用者提出需求後，執行「分步讀取協議」
 
 ---
 
 ## 📋 專案清單
 
 - 專案名稱：家庭 webapp（領域：W）
-  核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
-  專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-family-fin.md
 - 專案名稱：訓練 AI（領域：W）
-  核心 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-core-webapp.md
-  專案 STARTUP：https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/STARTUP-project-ai-training.md
 
 ---
 
-## 📖 分步讀取協議（AI 必做）
+## 📖 分步讀取協議
 
-當使用者選擇專案並提出需求時，你必須：
-1. 從下方「倉庫檔案地圖」與「程式碼地圖」中找出相關檔案。
-2. 規劃讀取清單，每次最多讀取 2 個檔案。
-3. 輸出清單並詢問：「是否同意開始讀取第 1 步？」
-4. 收到「確認」後才讀取，讀完摘要，再問是否繼續下一步。
-5. 全部讀完後才提供修改方案。
-
-⚠️ 禁止一次讀取超過 2 個檔案；禁止未讀完就給方案。
+1. 從下方地圖找出相關檔案。
+2. 每次最多讀取 2 個檔案，讀取後等待確認。
+3. 全部讀完才給方案。
 
 ---
 
 ## 🗺️ 倉庫檔案地圖（AI-training-files）
 
-### 📂 核心大腦 (docs/common/)
 - docs/common/C-00-startup.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-00-startup.md
 - docs/common/C-01-profile.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-01-profile.md
 - docs/common/C-02-rules.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-02-rules.md
@@ -50,7 +41,7 @@
 - docs/common/C-09-rolling-mechanism.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-09-rolling-mechanism.md
 - docs/common/C-10-handoff-mechanism.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/common/C-10-handoff-mechanism.md
 
-### 📂 Web App 技能包 (docs/skills/W/)
+### 📂 Web App 技能包
 - docs/skills/W/W-00-startup.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-00-startup.md
 - docs/skills/W/W-01-firebase.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-01-firebase.md
 - docs/skills/W/W-02-functions.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-02-functions.md
@@ -58,10 +49,10 @@
 - docs/skills/W/W-04-pwa.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-04-pwa.md
 - docs/skills/W/W-05-schema.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/skills/W/W-05-schema.md
 
-### 📂 機械記錄 (docs/records/)
+### 📂 機械記錄
 - docs/records/R-01-writers.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/records/R-01-writers.md
 
-### 📂 家庭 webapp 專案 (docs/projects/family-fin/)
+### 📂 家庭 webapp 專案
 - docs/projects/family-fin/P-01-index.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-01-index.md
 - docs/projects/family-fin/P-02-progress.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-02-progress.md
 - docs/projects/family-fin/P-03-manifest.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-03-manifest.md
@@ -78,11 +69,8 @@
 - docs/projects/family-fin/P-15-reorg-plan.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-15-reorg-plan.md
 - docs/projects/family-fin/P-99-errors-map.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/family-fin/P-99-errors-map.md
 
-### 📂 訓練 AI 專案 (docs/projects/ai-training/)
-- docs/projects/ai-training/P-00-training.md -> https://raw.githubusercontent.com/tlee20860-dotcom/AI-training-files/main/docs/projects/ai-training/P-00-training.md
-
 ---
-## 📋 R-01 當前內容（AI 請直接讀取）
+## 📋 R-01 當前內容
 
 # R-01 AI 編寫者名單 + 專案索引
 
@@ -343,10 +331,7 @@ W: A20261013-004#164
 ## 🗺️ v2.Family 程式碼地圖
 # v2.Family 程式碼地圖
 
-> 本檔由 GitHub Actions 自動生成，列出 v2.Family 倉庫中所有程式碼檔案的路徑與 Raw URL。
-
-## Raw URL 拼接規則
-https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/
+> 本檔由 GitHub Actions 自動生成。
 
 ## 檔案清單
 - admin.html -> https://raw.githubusercontent.com/tlee20860-dotcom/v2.Family/main/admin.html

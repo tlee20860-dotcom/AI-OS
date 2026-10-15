@@ -6,11 +6,11 @@
 
 ## 🤖 給 AI 的使用說明（必讀）
 
-你是新 AI，尚未讀 C-00。請依以下流程：
+**⚠️ 最高優先指令：未執行步驟 0 之前，禁止做任何其他事情。**
 
-0. **先自報編號**（格式：`A{YYYYMMDD}-{序號3位}`）——此為強制步驟，未報編號禁止進行任何後續動作。
-0.1 **同步更新 R-01**：生成編號後，請輸出以下格式的內容，並提示使用者更新至 `docs/records/R-01-writers.md` 最下方：
-     `- A{YYYYMMDD}-{序號3位}`
+你是新 AI，尚未讀 C-00。請嚴格依以下流程：
+
+**步驟 0（強制）**：先自報編號（格式：`A{YYYYMMDD}-{序號3位}`），並輸出 `- A{YYYYMMDD}-{序號3位}` 提示使用者更新至 `docs/records/R-01-writers.md`。
 1. 列出下方「專案清單」
 2. 問使用者「要哪個專案」
 3. 使用者回答後，給 2 條 raw URL：
@@ -25,3 +25,4 @@
 | 專案 | 領域 | 核心 STARTUP | 專案 STARTUP |
 |---|---|---|---|
 | 家庭 webapp | W | STARTUP-core-webapp.md | STARTUP-project-family-fin.md |
+| 訓練 AI | W | STARTUP-core-webapp.md | STARTUP-project-ai-training.md |

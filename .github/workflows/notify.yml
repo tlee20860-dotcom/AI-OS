@@ -10,7 +10,12 @@ on:
     branches: [main, master]
     paths:
       - 'docs/**'
-      - '*.md'
+      - '**/*.md'
+      - '**/*.js'
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.json'
+      - '**/*.yml'
 
 jobs:
   notify:
@@ -27,7 +32,7 @@ jobs:
 
 # ═══ EOF ═══
 # F: AI-training-files/.github/workflows/notify.yml
-# V: 1791907120
-# B: B34-4
-# W: A20261016-001
+# V: 1791915000
+# B: B34-5
+# W: ai-system-20261016-003#041
 # ═══ EOF ═══

@@ -1,10 +1,8 @@
 # ============================================
-# notify.yml — AI-training-files（已停用）
-# 位置：AI-training-files/.github/workflows/notify.yml
-# 狀態：停用。保留檔案作為歷史記錄，不再自動觸發 AI-General。
+# notify.yml — 手動通知 AI-General 重新打包
 # ============================================
 
-name: Notify AI-General (Disabled)
+name: Manual Notify AI-General
 
 on:
   workflow_dispatch:
@@ -13,14 +11,17 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Disabled notice
+      - name: Trigger AI-General build
         run: |
-          echo "AI-training-files 已停用，不再通知 AI-General。"
-          echo "原因：該 repo 內容已遷移至 AI-General，且從掃描中移除。"
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.CROSS_REPO_PAT }}" \
+            https://api.github.com/repos/tlee20860-dotcom/AI-General/dispatches \
+            -d '{"event_type":"ai-os-updated"}'
+          echo "已通知 AI-General 重新建置 91-ai-os.md"
 
 # ═══ EOF ═══
-# F: AI-training-files/.github/workflows/notify.yml
-# V: 1791936000
-# B: B34-5
-# W: ai-system-20261016-003#135
+# F: AI-OS/.github/workflows/notify.yml
+# V: 1792316000
+# W: ai-system-20261018-008#092
 # ═══ EOF ═══
